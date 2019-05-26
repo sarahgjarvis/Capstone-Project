@@ -11,8 +11,15 @@ global.era <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/O
 #observational-southern
 {south.ncep <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/Observational\ Data/lowerhemisphere_ncep2_obs_jan81dec10.dat"))
   south.era <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/Observational\ Data/lowerhemisphere_erainterm_t2m_jan81dec10.dat"))}
+obs.ts = list()
+obs.ts$global = list(global.ncep, global.era)
+obs.ts$trop = list(trop.ncep, trop.era)
+obs.ts$north = list(north.ncep, north.era)
+obs.ts$south = list(south.ncep, south.era)
+names(obs.ts$global) = names(obs.ts$trop) = names(obs.ts$north) = names(obs.ts$south) = c('ncep', 'era')
 
 #model-Global
+
 #MIROC5
 {
   miroc.global.deca <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/MIROC5/global_MIROC5_decadal_jan81dec10_i1.dat"))
@@ -39,7 +46,8 @@ had.global.control <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model
 {gfdl.global.deca <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/global_GFDL-CM2p1_decadal_jan1981dec2010_i1.dat"))
 gfdl.global.hist <- rbind(as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/global_GFDL-CM2p1_historical_jan1981dec2005_i1.dat")), as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/global_HadCM3_rcp_jan2006dec2010_i1.dat")))
 gfdl.global.control <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/global_CanESM2_control_30years.dat"))}
-
+global = list(miroc.global.control, miroc.global.deca, miroc.global.hist, can.global.control, can.global.deca, can.global.hist, had.global.control, had.global.deca, had.global.hist, gfdl.global.control, gfdl.global.hist)
+names(global) = c('miroc.control', 'miroc.deca', 'miroc.hist', 'can.control', 'can.deca', 'can.hist','had.control', 'had.deca', 'had.hist', 'gfdl.control', 'gfld.hist')
 
 #model-Tropical
 #MIROC5
@@ -70,7 +78,8 @@ had.trop.control <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ 
   gfdl.trop.hist <- rbind(as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/tropical_GFDL-CM2p1_historical_jan1981dec2005_i1.dat")), as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/tropical_HadCM3_rcp_jan2006dec2010_i1.dat")))
   gfdl.trop.control <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/tropical_CanESM2_control_30years.dat"))
 }
-
+trop = list(miroc.trop.control, miroc.trop.deca, miroc.trop.hist, can.trop.control, can.trop.deca, can.trop.hist, had.trop.control, had.trop.deca, had.trop.hist, gfdl.trop.control, gfdl.trop.hist)
+names(trop) = c('miroc.control', 'miroc.deca', 'miroc.hist', 'can.control', 'can.deca', 'can.hist','had.control', 'had.deca', 'had.hist', 'gfdl.control', 'gfld.hist')
 
 #model-Northern
 #MIROC5
@@ -100,7 +109,8 @@ had.north.control <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\
   gfdl.north.hist <- rbind(as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/upperhemisphere_GFDL-CM2p1_historical_jan1981dec2005_i1.dat")), as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/upperhemisphere_HadCM3_rcp_jan2006dec2010_i1.dat")))
   gfdl.north.control <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/upperhemisphere_CanESM2_control_30years.dat"))
   }
-
+north = list(miroc.north.control, miroc.north.deca, miroc.north.hist, can.north.control, can.north.deca, can.north.hist, had.north.control, had.north.deca, had.north.hist, gfdl.north.control, gfdl.north.hist)
+names(north) = c('miroc.control', 'miroc.deca', 'miroc.hist', 'can.control', 'can.deca', 'can.hist','had.control', 'had.deca', 'had.hist', 'gfdl.control', 'gfld.hist')
 
 #model-southern
 #MIROC5
@@ -131,6 +141,12 @@ had.north.control <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\
   gfdl.south.hist <- rbind(as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/lowerhemisphere_GFDL-CM2p1_historical_jan1981dec2005_i1.dat")), as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/lowerhemisphere_HadCM3_rcp_jan2006dec2010_i1.dat")))
   gfdl.south.control <- as.matrix(read.table("/Users/SarJar/Desktop/Climate\ Model\ Data/GFDL-CM2p1/lowerhemisphere_CanESM2_control_30years.dat"))
 }
+south = list(miroc.south.control, miroc.south.deca, miroc.south.hist, can.south.control, can.south.deca, can.south.hist, had.south.control, had.south.deca, had.south.hist, gfdl.south.control, gfdl.south.hist)
+names(south) = c('miroc.control', 'miroc.deca', 'miroc.hist', 'can.control', 'can.deca', 'can.hist','had.control', 'had.deca', 'had.hist', 'gfdl.control', 'gfld.hist')
+
+
+model.ts = list(global, trop, north, south)
+names(model.ts) = c('global', 'trop', 'north', 'south')
 
 par(mar=c(2,4,1,1))
 par(mfrow=c(4,1))
